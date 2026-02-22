@@ -1,0 +1,43 @@
+Додати користувача до групи sudo
+    -перейти під супер користувача
+    su
+
+    sudo usermod -aG sudo <username>
+
+    -перезавантажитись
+
+Встановити відео:
+
+-Відключити Nouveau і перевстановити драйвер
+    sudo nano /etc/modprobe.d/blacklist-nouveau.conf
+        Додай:
+            blacklist nouveau
+            options nouveau modeset=0
+
+            options nvidia-drm modeset=1
+
+-Альтернативний метод відключення
+    sudo tee /etc/modprobe.d/blacklist-nouveau.conf <<EOF
+    blacklist nouveau
+    options nouveau modeset=0
+    EOF
+
+
+    sudo update-initramfs -u
+-Перевстановити драйвер NVIDIA
+    sudo apt purge '^nvidia-.*' 'xserver-xorg-video-nouveau'
+    sudo apt install nvidia-driver firmware-misc-nonfree
+
+    sudo reboot
+
+-Після завантаження (перевірка)
+    nvidia-smi
+    glxinfo | grep OpenGL
+
+    sudo dkms status
+-Вимкнути Wayland для SDDM
+
+    sudo nano /etc/sddm.conf
+        Встав (або створи файл):
+            [General]
+            DisplayServer=x11
