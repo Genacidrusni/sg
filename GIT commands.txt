@@ -1,0 +1,53 @@
+Ініціалізувати репозиторій:
+#
+git init
+
+Додати файли та зробити перший коміт
+#
+git add .
+git commit -m "Initial commit"
+
+Створити репозиторій на GitHub
+
+Зайди на https://github.com
+ → New repository → створити порожній (без README).
+
+
+ Підключити віддалений репозиторій
+ #
+ git remote add origin git@github.com:USERNAME/REPO.git
+
+ Запушити
+ #
+git branch -M main
+git push -u origin main
+
+Якщо буде помилка з доступом (SSH)
+
+Згенерувати ключ:
+#
+ssh-keygen -t ed25519 -C "your_email@example.com"
+
+Додати ключ у GitHub → Settings → SSH keys.
+
+Як зробити щоб git показував нормально кирилицю
+#
+git config --global core.quotepath false
+
+
+Скрипт для пушу push.sh
+
+#!/bin/bash
+
+git add .
+
+if git diff --cached --quiet; then
+    echo "Немає змін"
+    exit 0
+fi
+
+git commit -m "update $(date '+%Y-%m-%d %H:%M:%S')"
+git push
+
+
+
