@@ -28,6 +28,17 @@
     sudo apt purge '^nvidia-.*' 'xserver-xorg-video-nouveau'
     sudo apt install nvidia-driver firmware-misc-nonfree
 
+-Потім встанови headers:
+
+    sudo apt install linux-headers-$(uname -r)
+
+-Перезбери драйвер
+
+    sudo dkms autoinstall
+
+-Перезапусти display manager
+    sudo systemctl restart sddm
+-Перезавантаження
     sudo reboot
 
 -Після завантаження (перевірка)
