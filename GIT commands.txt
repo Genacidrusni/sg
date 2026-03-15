@@ -15,7 +15,7 @@ git commit -m "Initial commit"
 
  Підключити віддалений репозиторій
  #
- git remote add origin git@github.com:USERNAME/REPO.git
+ git remote add origin git@github.com:Genacidrusni/REPO.git
 
  Запушити
  #
